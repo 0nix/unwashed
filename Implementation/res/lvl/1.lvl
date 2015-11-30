@@ -1,0 +1,251 @@
+# 1.lvl configures the first floor of AB1, the bathroom alcove, and the 
+# elevator alcove leading to the third floor. 
+#
+# Authored by V. Sanchez, D. Menteer, J. Sparks, A. McGowen, & Z. Zhang
+#
+#
+# Begin loading images
+# <type> <id> <path to resource>
+IMAGE 1002 res/images/AB1_Outside/Outside-2.png
+IMAGE 1003 res/images/AB1_Outside/Outside-3.png
+IMAGE 1004 res/images/AB1_Outside/Outside-4.png
+IMAGE 1005 res/images/AB1_Floor1/Floor1-1.png
+IMAGE 1006 res/images/AB1_Floor1/Floor1-2a.png
+IMAGE 1007 res/images/AB1_Floor1/Floor1-2b.png
+IMAGE 1008 res/images/AB1_Floor1/Floor1-3a.png
+IMAGE 1009 res/images/AB1_Floor1/Floor1-3b.png
+IMAGE 1010 res/images/AB1_Floor1/Floor1-4.png
+IMAGE 1011 res/images/AB1_Floor1/Floor1-5a.png
+IMAGE 1012 res/images/AB1_Floor1/Floor1-5b.png
+IMAGE 1013 res/images/AB1_Floor1/Floor1-6a.png
+IMAGE 1014 res/images/AB1_Floor1/Floor1-6b.png
+IMAGE 1015 res/images/AB1_Floor1/Floor1-7a.png
+IMAGE 1016 res/images/AB1_Floor1/Floor1-7bPS.png
+IMAGE 1017 res/images/AB1_Floor1/Floor1-7c.png
+IMAGE 1018 res/images/AB1_Elevator1/Elevator-1.png
+IMAGE 1019 res/images/AB1_Elevator1/Elevator-2.png
+IMAGE 1020 res/images/AB1_Elevator1/Elevator-3.png
+IMAGE 1021 res/images/AB1_Elevator1/Elevator-4.png
+IMAGE 1022 res/images/AB1_Elevator1/Elevator-5.png
+IMAGE 1023 res/images/AB1_Elevator1/Elevator-6.png
+IMAGE 1024 res/images/AB1_Elevator1/Elevator-7.png
+IMAGE 1025 res/images/AB1_Bath/Bathroom-1.png
+IMAGE 1026 res/images/AB1_Bath/Bathroom-2.png
+IMAGE 1027 res/images/AB1_Bath/Bathroom-3.png
+IMAGE 1028 res/images/AB1_Bath/Bathroom-4.png
+IMAGE 1029 res/images/AB1_Bath/Bathroom-5.png
+IMAGE 1030 res/images/AB1_Bath/Bathroom-6.png
+IMAGE 1031 res/images/AB1_Floor1/Floor1-5a1.png
+IMAGE 1032 res/images/AB1_Floor1/Floor1-5a2.png
+IMAGE 1033 res/images/AB1_Floor1/Floor1-5a3.png
+IMAGE 1034 res/images/AB1_Floor1/Floor1-5a4new.png
+IMAGE 2001 res/images/AB1_Floor1/coin.png
+IMAGE 2002 res/images/AB1_Floor1/key.png
+IMAGE 2003 res/images/AB1_Bath/Peek1.png
+IMAGE 2004 res/images/AB1_Bath/Peek2.png
+
+# Begin loading audio samples. 
+# <TYPE>=<ID>,<PATH_TO_RESOURCE>
+AUDIO 5002 res/audio/SoundEffects/Spooky_Water_Drops.wav
+
+# Use 102 as the starting scene
+START_SCENE 102
+
+# Begin scene listing. 
+# SCENE <SCENE_ID> <BACKGROUND_IMAGE_ID>
+# SceneLink <sceneID> <region (x,y)> <width> <height> <itemID> <item required> 
+######################
+
+# Initial spawn, OUTSIDE
+SCENE 102 1002
+AudioStreamActor res/audio/AmbientSounds/bear.wav
+SceneLink 103 645 327 420 386 -1 -1
+ENDSCENE
+
+SCENE 103 1003
+SceneLink 104 435 354 483 434 -1 -1
+ENDSCENE
+
+SCENE 104 1004
+SceneLink 105 215 57 852 777 -1 -1
+ENDSCENE
+
+# The PLAYER is now inside the FIRST FLOOR of AB1. 
+# There is a fork in SCENE 105 to SCENE 106 or 108
+# [!] Collect CHANGE from beneath bench. 
+SCENE 105 1005 
+SceneLink 108 1061 254 220 418 -1 -1
+SceneLink 106 39 177 257 671 -1 -1
+InventoryItemActor 700 670 32 32 106 2001 3
+TextboxSpawnActor 700 670 32 32 A coin.
+ENDSCENE
+
+# Fork to restroom alcove, SCENE 106, or skip to SCENE 108
+SCENE 106 1007
+AudioStreamActor res/audio/AmbientSounds/bear.wav
+# Forward to restroom alcove
+SceneLink 107 280 50 700 700 -1 -1
+# Return to SCENE 105
+SceneLink 105 0 797 1275 80 -1 -1
+ENDSCENE
+
+SCENE 107 1009
+SceneLink 106 0 797 1275 80 -1 -1 
+SceneLink 1114 11 143 360 652 -1 -1 
+ENDSCENE
+
+SCENE 1114 1025
+SceneLink 1115 209 14 627 826 -1 -1
+ENDSCENE
+
+SCENE 1115 1026
+AudioStreamActor res/audio/AmbientSounds/50hzHum.wav
+SceneLink 1116 833 336 345 489 -1 -1
+ENDSCENE
+
+SCENE 1116 1027
+SceneLink 1117 471 339 378 497 -1 -1
+ENDSCENE
+
+SCENE 1117 1028
+SceneLink 1118 0 797 1275 80 -1 -1
+ResponsiveVideoActor 450 477 143 186 2004 -1 2003 3
+ENDSCENE
+
+SCENE 1118 1029
+SceneLink 1119 1152 38 120 772 -1 -1
+ResponsiveAudioActor 494 647 117 87 -1 5002 
+ResponsiveAudioActor 695 561 60 54 -1 5002 
+ResponsiveAudioActor 785 516 36 54 -1 5002
+ENDSCENE
+
+SCENE 1119 1030
+SceneLink 106 569 294 184 456 -1 -1
+ENDSCENE
+
+# Continue ahead, ignore restroom alcove. 
+SCENE 108 1006
+AudioStreamActor res/audio/AmbientSounds/bear.wav
+SceneLink 105 0 797 1275 80 -1 -1
+SceneLink 109 489 291 297 365 -1 -1
+ENDSCENE
+
+SCENE 109 1008
+AudioStreamActor res/audio/AmbientSounds/bear.wav
+SceneLink 108 0 797 1275 80 -1 -1
+SceneLink 110 399 240 468 558 -1 -1
+ENDSCENE
+
+# There is a fork in SCENE 110 to SCENE 111 or skip ahead to SCENE 113
+SCENE 110 1010
+SceneLink 109 0 797 1275 80 -1 -1
+SceneLink 111 0 0 310 795 -1 -1
+SceneLink 113 383 212 616 443 -1 -1
+ENDSCENE
+
+# For left to locked double doors
+SCENE 111 1012
+SceneLink 112 555 396 159 201 -1 -1	# Peer into keyholes of locked doors. 
+SceneLink 110 0 797 1275 80 -1 -1 	# Return to SCENE 110
+ENDSCENE
+
+SCENE 112 1014
+SceneLink 111 0 797 1275 80 -1 -1	# Dead end. Return to SCENE 111. 
+ENDSCENE
+
+# Continue ahead, ignore doors to left. 
+# [!] Collect elevator alcove key from vending machine scenes. 
+SCENE 113 1011
+SceneLink 114 458 252 394 455 -1 -1
+SceneLink 1120 903 260 279 502 -1 -1
+SceneLink 110 0 797 1275 80 -1 -1
+ENDSCENE
+
+# [!] Use CHANGE to activate vending machine and retrieve ELEVATOR_KEY, in SCENE 1123
+# Else, PLAYER can only go to SCENE 1121, and will see a closed dispenser. 
+SCENE 1120 1031
+SceneLink 113 0 797 1275 80 -1 -1
+SceneLink 1121 734 337 156 246 -1 -1
+# SceneLink 1123 773 413 91 76 106 CHANGE
+ENDSCENE
+
+SCENE 1121 1032
+SceneLink 1120 0 797 1275 80 -1 -1
+SceneLink 1123 512 290 223 183 106 CHANGE
+# TextboxSpawnActor 512 278 223 183 Perhaps some change would help...
+ENDSCENE
+
+SCENE 1122 1033
+SceneLink 1123 691 491 99 99 -1 -1
+ENDSCENE
+
+# [!] Collect ELEVATOR_KEY from vending machine dispenser. 
+SCENE 1123 1034
+SceneLink 113 0 770 1280 80 101 ELEVATOR_KEY
+InventoryItemActor 587 621 83 62 101 2002 3
+TextboxSpawnActor 587 621 83 62 The vending machine dispensed a key.
+ENDSCENE
+
+# There is a fork in SCENE 114 to SCENE 115, 116, or skip to SCENE 117. 
+SCENE 114 1013
+SceneLink 115 1065 5 204 790 -1 -1
+SceneLink 116 5 2 193 790 -1 -1
+SceneLink 117 285 245 116 378 -1 -1
+SceneLink 113 0 797 1275 80 -1 -1
+TextboxSpawnActor 464 230 358 324 There doesn't seem to be anything there, but something is holding these doors shut from the outside. 
+ENDSCENE
+
+# PLAYER examines stairs to the right. 
+SCENE 115 1016
+SceneLink 114 0 797 1275 80 -1 -1	# Return to SCENE 114
+TextboxSpawnActor 294 11 681 782 Dark energy is blocking the way ahead. Maybe there's a different route. 
+ENDSCENE
+
+# PLAYER examines camera to left. 
+SCENE 116 1017
+SceneLink 114 0 797 1275 80 -1 -1	# Return to SCENE 114
+TextboxSpawnActor 791 167 208 186 Something evil is watching.  
+ENDSCENE
+
+# PLAYER approaches elevator alcove.  
+SCENE 117 1015
+SceneLink 118 506 63 406 730 101 ELEVATOR_KEY
+SceneLink 114 0 797 1275 80 -1 -1
+ENDSCENE
+
+################ Transistion to elevator alcove ###################
+
+SCENE 118 1018
+AudioStreamActor res/audio/AmbientSounds/elevatorRoomHum.wav
+SceneLink 119 260 110 562 738 -1 -1
+ENDSCENE
+
+SCENE 119 1019
+SceneLink 120 725 237 141 398 -1 -1
+ENDSCENE
+
+SCENE 120 1020
+SceneLink 121 725 237 141 398 -1 -1
+ENDSCENE
+
+SCENE 121 1021
+SceneLink 122 118 11 967 826 -1 -1
+ENDSCENE
+
+SCENE 122 1022
+SceneLink 123 444 312 236 102 -1 -1
+TextboxSpawnActor 707 413 129 85 This button isn't working. 
+TextboxSpawnActor 553 419 103 81 This button doesn't do anything. 
+ENDSCENE
+
+SCENE 123 1023
+SceneLink 124 444 312 236 102 -1 -1
+ENDSCENE
+
+SCENE 124 1024
+LevelLink 3 411 20 431 827 125 -1 -1
+ENDSCENE
+
+################## End level file 1. Proceed to 3.lvl ######################
+
+
